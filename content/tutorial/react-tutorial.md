@@ -502,7 +502,7 @@ $ cd ../export-button
 Now update your component by re-importing:
 
 ```bash
-$ bit import wonderwoman.diana/ui/button --force
+$ bit import wonderwoman.diana/ui/button
 
 successfully imported one component
 - wonderwoman.diana/ui/button@0.0.2
