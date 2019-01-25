@@ -60,7 +60,7 @@ We'll use this example project to show you how to work with Bit.
 
 ## Add, Export & Share Components
 
-In the this section, you'll use a React component and share it ([export](/docs/cli-export.html)) to a remote [Scope](/docs/scopes-on-bitsrc.html#scopes) on [bitsrc.io](https://bitsrc.io).
+In this section, you'll use a React component and share it ([export](/docs/cli-export.html)) to a remote [Scope](/docs/scopes-on-bitsrc.html#scopes) on [bitsrc.io](https://bitsrc.io).
 
 ### Initializing Bit on your project
 
@@ -154,7 +154,7 @@ Add an environment by using the [Import](/docs/cli-import.html#import-a-single-c
 $ bit import bit.envs/compilers/react -c
 
 the following component environments were installed
-- bit.envs/compilers/react@0.0.13
+- bit.envs/compilers/react@0.0.14
 ```
 
 ### Build your component
@@ -212,7 +212,7 @@ Before you continue, check that you have a [Scope](/docs/scopes-on-bitsrc.html#s
 
 In order to export a component, you need to specify a [Scope](/docs/scopes-on-bitsrc.html#scopes) to export your component to.
 
-A [Scope](/docs/scopes-on-bitsrc.html#scopes) is a remote directory that stores, components that you create in order to work, share and track your components. Other developers can then access your public Scope and use your components. You can view a scope example in the [tutorial project Scope](https://bitsrc.io/odedreuveny/example).
+A [Scope](/docs/scopes-on-bitsrc.html#scopes) is a remote directory that stores components that you create in order to share and track your components. Other developers can then access your public Scope and use your components. You can view a scope example in the [tutorial project Scope](https://bitsrc.io/odedreuveny/example).
 
  To create your own Scope follow [these instructions](/docs/quick-start.html#create-a-scope).
 
@@ -227,7 +227,7 @@ $ bit export wonderwoman.diana
 exported 1 components to scope wonderwoman.diana
 ```
 
-Once the you exported the component, you can see it on your Scope on [bitsrc.io](https://bitsrc.io).
+Once the component is exported, you can see it in your Scope at [bitsrc.io](https://bitsrc.io).
 
 If you [check status](/docs/cli-status.html), you can see the component is not displayed.
 Bit has created a copy of the component, along with all its dependencies, the component is now hosted in your remote Scope.
@@ -254,7 +254,7 @@ no auto-tag pending components
 no deleted components
 ```
 
-Go to your [bitsrc.io](https://bitsrc.io) profile to view  your Scope and the exported component. Your Scope should look like [this](https://bitsrc.io/odedreuveny/example/ui/button). Your component is now available for other developers to import and use freely.
+Go to your [bitsrc.io](https://bitsrc.io) profile to view your Scope and the exported component. Your Scope should look like [this](https://bitsrc.io/odedreuveny/example/ui/button). Your component is now available for other developers to import and use freely.
 
 ## Install & Use Components
 
@@ -275,7 +275,7 @@ $ npm install # or yarn install
 
 ### Configure [bitsrc.io](https://bitsrc.io) as a scoped registry
 
-To configure npm (or yarn) installing Bit components hosted on [bitsrc.io](https://bitsrc.io), you will need to configure [bitsrc.io](https://bitsrc.io) as a [Scoped Registry](https://docs.npmjs.com/misc/registry)
+To configure npm (or yarn) to install Bit components hosted on [bitsrc.io](https://bitsrc.io), you will need to configure [bitsrc.io](https://bitsrc.io) as a [Scoped Registry](https://docs.npmjs.com/misc/registry)
 
 ```bash
 $ npm config set @bit:registry https://node.bitsrc.io
@@ -390,7 +390,7 @@ node_modules/@bit
 1 directory, 0 files
 ```
 
-Your `import` statement now refers to the sourced component. Every time you use `bit import` in a project, Bit will create a symlink to the component in your node modules directory. You can use absolute `import` statement to use sourced components.
+Your `import` statement now refers to the sourced component. Every time you use `bit import` in a project, Bit will create a symlink to the component in your node modules directory. You can use absolute `import` statements to use sourced components.
 
 ### Modify an imported component
 
@@ -475,7 +475,7 @@ changed components:  ui/button@0.0.2
 
 ### Export component new version
 
-To export the component new version, use the `bit export` command again, but now add the flag `--eject`. This flag allows  Bit to replace the component node module with the exported version, so that your project will have less code and clutter.
+To export the component new version, use the `bit export` command again, but now add the flag `--eject`. This flag allows Bit to replace the component node module with the exported version, so that your project will have less code and clutter.
 
 ```bash
 $ bit export wonderwoman.diana ui/button --eject
@@ -485,11 +485,11 @@ exported 1 components to scope wonderwoman.diana
 
 Open your IDE and see that the component is no longer a part of it, and was added to your project's `package.json` file.
 
- Check your Scope in [bitsrc.io](https://bitsrc.io), you can see that there is a new version for the React component.
+Check your Scope in [bitsrc.io](https://bitsrc.io), you can see that there is a new version for the React component.
 
 ## Import updated component
 
-Now you can use the updated React component, and import it in to the `export-button` project. By doing so, you will receive the updates exported to the remote Scope into your local project as well.
+Now you can use the updated React component, and import it into the `export-button` project. By doing so, you will receive the updates exported to the remote Scope into your local project as well.
 
 ### Consume updated component
 
@@ -502,10 +502,10 @@ $ cd ../export-button
 Now update your component by re-importing:
 
 ```bash
-$ bit import wonderwoman.diana/ui/button --force
+$ bit import wonderwoman.diana/ui/button
 
 successfully imported one component
-- wonderwoman.diana/ui/button@0.0.2
+- updated wonderwoman.diana/ui/button new versions: 0.0.2
 ```
 
 Run the project again, and see that it is renders the updated button:
