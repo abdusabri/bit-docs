@@ -140,15 +140,15 @@ exported 3 components to scope username.scopename
 
 All components shared with Bit can be installed with the NPM / Yarn client or with any package manager that implements the [CommonJS package registry specification](http://wiki.commonjs.org/wiki/Packages/Registry).
 
-You can now install the components you just exported in other project [using NPM / Yarn](/docs/installing-components-with-package-managers.html). This workflow makes every component and module available to install for every developer, using Bit or not.
+You can now install the components you just exported in other projects [using NPM / Yarn](/docs/installing-components-with-package-managers.html). This workflow makes every component and module available to install for every developer, using Bit or not.
 
 #### Import and develop components
 
 Using the `bit import` command you can [import components](/docs/importing-components.html) and modules shared with Bit into any repository, and continue to develop them.  
 
-The sourced and modified component can then be exported back to [bitsrc.io](https://bitsrc.io) as a new version of component, or as a new component.
+Each sourced and modified component can then be exported back to [bitsrc.io](https://bitsrc.io) as either a new version, or an entirely new component.
 
-This workflow makes it easier to maintain and modify components, to build software faster.
+This workflow makes it easier to maintain and modify components, building software faster.
 
 #### Update and sync changes
 
