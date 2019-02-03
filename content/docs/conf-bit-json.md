@@ -156,5 +156,5 @@ The extension's configuration and options are listed for each extension.
 
 The `resolveModules` section configures custom module resolution for Bit components. This is similar to Webpack's `resolve`, and contains 2 objects:
 
-* `moduleDirectories` - Add additional paths to resolve components from.
+* `moduleDirectories: array` - Add additional paths to resolve components from.
 * `aliases` - Sets an alias for a directory.
