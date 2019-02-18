@@ -4,8 +4,8 @@ title: Configuring Bit
 permalink: docs/conf-config.html
 layout: docs
 category: Configuring Bit
-prev: conf-bit-on-the-server.html
-next: conf-analytics.html
+prev: conf-bit-json.html
+next: latest-version.html
 ---
 
 Bit's general configuration affects your communication with the hub.
@@ -24,7 +24,7 @@ All configs are sets using the [config](/docs/cli-config.html) command.
 * `analytics_reporting` - True/False indication to send anonymous usage data to Bit. [Read More](/docs/conf-analytics.html). By default it is set to `false`.
 * `anonymous_reporting` - True/False indication to remove all masks on anonymous usage data, rendering it not-anonymous. [Read more](/docs/conf-analytics.html). By default it is set to `true`.
 * `error_reporting` - True/False indication to send anonymous errors data to Bit. [Read More](/docs/conf-analytics.html). By default it is set to `false`.
-
+* `git_path` - Path to the location of the Git executable.
 
 ## Configure your identity
 

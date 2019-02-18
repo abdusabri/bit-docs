@@ -59,30 +59,7 @@
         "origin": "IMPORTED",
         "originallySharedDir": "content/community"
     },
-    "bit.docs/content/tutorial@0.0.11": {
-        "files": [
-            {
-                "name": "index.js",
-                "relativePath": "index.js",
-                "test": false
-            },
-            {
-                "name": "nav.yml",
-                "relativePath": "nav.yml",
-                "test": false
-            },
-            {
-                "name": "react-tutorial.md",
-                "relativePath": "react-tutorial.md",
-                "test": false
-            }
-        ],
-        "mainFile": "index.js",
-        "rootDir": "content/tutorial",
-        "origin": "IMPORTED",
-        "originallySharedDir": "content/tutorial"
-    },
-    "bit.docs/content/docs@0.0.26": {
+    "bit.docs/content/docs@1.0.0": {
         "files": [
             {
                 "name": "authentication-issues.md",
@@ -210,28 +187,13 @@
                 "test": false
             },
             {
-                "name": "common-errors.md",
-                "relativePath": "common-errors.md",
-                "test": false
-            },
-            {
                 "name": "conf-bit-json.md",
                 "relativePath": "conf-bit-json.md",
                 "test": false
             },
             {
-                "name": "conf-bit-on-the-server.md",
-                "relativePath": "conf-bit-on-the-server.md",
-                "test": false
-            },
-            {
                 "name": "conf-config.md",
                 "relativePath": "conf-config.md",
-                "test": false
-            },
-            {
-                "name": "conf-scope-json.md",
-                "relativePath": "conf-scope-json.md",
                 "test": false
             },
             {
@@ -260,11 +222,6 @@
                 "test": false
             },
             {
-                "name": "ext-isolated-component-environment.md",
-                "relativePath": "ext-isolated-component-environment.md",
-                "test": false
-            },
-            {
                 "name": "ext-testing.md",
                 "relativePath": "ext-testing.md",
                 "test": false
@@ -272,11 +229,6 @@
             {
                 "name": "ext-using-extensions.md",
                 "relativePath": "ext-using-extensions.md",
-                "test": false
-            },
-            {
-                "name": "importing-components.md",
-                "relativePath": "importing-components.md",
                 "test": false
             },
             {
@@ -290,23 +242,8 @@
                 "test": false
             },
             {
-                "name": "install-components.md",
-                "relativePath": "install-components.md",
-                "test": false
-            },
-            {
                 "name": "installation.md",
                 "relativePath": "installation.md",
-                "test": false
-            },
-            {
-                "name": "installing-components-using-package-managers.md",
-                "relativePath": "installing-components-using-package-managers.md",
-                "test": false
-            },
-            {
-                "name": "isolating-and-tracking-components.md",
-                "relativePath": "isolating-and-tracking-components.md",
                 "test": false
             },
             {
@@ -330,11 +267,6 @@
                 "test": false
             },
             {
-                "name": "organizing-components-in-boxes.md",
-                "relativePath": "organizing-components-in-boxes.md",
-                "test": false
-            },
-            {
                 "name": "quick-start.md",
                 "relativePath": "quick-start.md",
                 "test": false
@@ -347,11 +279,6 @@
             {
                 "name": "rendering-components.md",
                 "relativePath": "rendering-components.md",
-                "test": false
-            },
-            {
-                "name": "scopes-on-bitsrc.md",
-                "relativePath": "scopes-on-bitsrc.md",
                 "test": false
             },
             {
@@ -370,11 +297,6 @@
                 "test": false
             },
             {
-                "name": "versioning-tracked-components.md",
-                "relativePath": "versioning-tracked-components.md",
-                "test": false
-            },
-            {
                 "name": "working-with-scm.md",
                 "relativePath": "working-with-scm.md",
                 "test": false
@@ -385,5 +307,28 @@
         "origin": "IMPORTED",
         "originallySharedDir": "content/docs"
     },
-    "version": "13.0.4"
+    "bit.docs/content/tutorial@1.0.0": {
+        "files": [
+            {
+                "name": "index.js",
+                "relativePath": "index.js",
+                "test": false
+            },
+            {
+                "name": "nav.yml",
+                "relativePath": "nav.yml",
+                "test": false
+            },
+            {
+                "name": "react-tutorial.md",
+                "relativePath": "react-tutorial.md",
+                "test": false
+            }
+        ],
+        "mainFile": "index.js",
+        "rootDir": "content/tutorial",
+        "origin": "IMPORTED",
+        "originallySharedDir": "content/tutorial"
+    },
+    "version": "14.0.1-dev.1"
 }

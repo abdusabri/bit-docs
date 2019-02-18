@@ -3,8 +3,8 @@ id: my-account
 title: My account
 permalink: docs/my-account.html
 layout: docs
-prev: setup-authentication.html
-next: scopes-on-bitsrc.html
+prev: bitsrc-component-ci.html
+next: bitsrc-plans.html
 ---
 
 Manage your account. Make it awesome.
@@ -15,13 +15,13 @@ To view your profile page, log-in and click on your avatar at the top right page
 
 ![alt text](https://storage.googleapis.com/bit-docs/myprofile1.png "Myprofile 1")
 
-You will find all of your Scopes under this page.
+You will find all of your Collections under this page.
 
 ## Generating and Adding an SSH Key
 
 A common transport protocol for Bit when self-hosting is over SSH. This is because SSH access to servers is already set up in most places – and if it isn’t, it’s easy to do. SSH is also an authenticated network protocol; and because it’s ubiquitous, it’s generally easy to set up and use.
 
-This makes SSH the preferred method for collaboration when developing components for remote Scopes.
+This makes SSH the preferred method for collaboration when developing components for remote Collections.
 
 ### Generating an SSH key with MacOS
 
@@ -87,20 +87,3 @@ Note:
 The link is valid for 24 hours.
 
 If you face any problems, you can email us at [team@bitsrc.io](mailto:team@bitsrc.io).
-
-## My Dashboard
-
-When you log in to BitSrc, you are greeted with your personalized dashboard. This dashboard contains updates and data relevant to your work and activity within the BitSrc community.
-
-### Component feed
-
-The main section of the dashboard is dedicated to showing you all the recent updates to components which are relevant to you.
-Components in Scopes you like
-Components you like
-Components you use which new updates
-Etc…
-Items are listed by updated date, starting at the top of the page.
-
-### Scopes list
-
-The right pane of the screen has a list of all the Scopes you have writing permission to, so you can easily access them and see if any specific changes have been made.

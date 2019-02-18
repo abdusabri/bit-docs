@@ -7,12 +7,13 @@ category: CLI Reference
 prev: cli-tag.html
 next: cli-untag.html
 ---
+
 Runs the tests of the specified component(s) using the configured tester.
 
 ## Synopsis
 
 ```bash
-bit test|t [-v|--verbose] [--include-unmodified] [id]
+bit test|t [-a|--all] [--fork-level] [-v|--verbose] [--include-unmodified] [id]
 ```
 
 ## Examples
@@ -41,7 +42,7 @@ bit test foo/bar --verbose
 
 **--include-unmodified**
 
-Test all components in Scope, including components with no modifications.
+Test all components in the workspace, including components with no modifications.
 
 ```bash
 bit test --include-unmodified

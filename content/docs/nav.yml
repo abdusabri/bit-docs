@@ -1,47 +1,58 @@
-- title: Getting Started
+- title: Home
   items:
     - id: quick-start
       title: Quick Start
+    - id: what-is-bit
+      title: What Is Bit?
+    - id: example-projects
+      title: Example Projects
+    - id: best-practices
+      title: Best Practices
+    - id: getting-help
+      title: Getting Help
+- title: Getting Started
+  items:
     - id: installation
-      title: Installation
+      title: Installing Bit
+    - id: setup-authentication
+      title: Setup Bitsrc.io Authentication
     - id: initializing-bit
-      title: Initializing Bit
-    - id: isolating-and-tracking-components
-      title: Isolating and Tracking Components
-    - id: versioning-tracked-components
-      title: Versioning Tracked Components
-    - id: organizing-components-in-scopes
-      title: Organizing Components in Scopes
-    - id: installing-components-using-package-managers
-      title: Installing Components using Package Managers
-    - id: importing-components
-      title: Importing Components
-    - id: updating-sourced-components
-      title: Updating Sourced Components
-    - id: merge-changes
-      title: Merging Component Changes
+      title: Initializing Bit Workspace
+    - id: remote-collection
+      title: Creating a Remote Collection
+    - id: add-and-isolate-components
+      title: Add & Isolate Components
+      subitems:
+      - id: tracking-dependencies
+        title: Tracking Dependencies
+      - id: manage-component-files
+        title: Managing Tracked Files
     - id: building-components
       title: Building Components
     - id: testing-components
       title: Testing Components
-    - id: rendering-components
-      title: Rendering Components
-    - id: removing-components
-      title: Removing Components
+    - id: tag-component-version
+      title: Versioning Components
     - id: documenting-components
       title: Documenting Components
-- title: FAQ
-  items:
-    - id: faq-what-is-bit
-      title: What Is Bit?
-    - id: faq-bit-basics
-      title: Bit Basics
-    - id: faq-how-do-i-work-with-bit
-      title: How Do I...
-    - id: faq-component-dependencies
-      title: Component Dependencies
-    - id: faq-understanding-bit-status
-      title: Understanding Bit Status
+    - id: organizing-components
+      title: Share Components to Bitsrc.io
+      subitems:
+        - id: removing-components
+          title: Remove & Deprecate
+    - id: installing-components
+      title: Installing Components with Package Managers
+    - id: sourcing-components
+      title: Sourcing Components
+      subitems:
+      - id: modifying-sourced-components
+        title: Modifying Components
+      - id: update-dependencies
+        title: Updating Dependencies
+      - id: updating-sourced-components
+        title: Fetching Remote Updates
+      - id: merge-changes
+        title: Merging Remote Changes
 - title: Extending Bit
   items:
     - id: ext-concepts
@@ -54,16 +65,22 @@
       title: Compiling
     - id: ext-testing
       title: Testing
+- title: Reference
+  items:
+    - id: component-dependencies
+      title: Component Dependencies
+    - id: workspace-statuses
+      title: Workspace Statuses
+    - id: conf-analytics
+      title: Anonymous Usage Analytics
+    - id: bit-on-the-server
+      title: Bit on the Server
 - title: Configuring Bit
   items:
     - id: conf-bit-json
       title: bit.json
-    - id: conf-bit-on-the-server
-      title: Bit on the Server      
     - id: conf-config
-      title: Config
-    - id: conf-analytics
-      title: Usage Analytics
+      title: Bit Configuraiton
 - title: Troubleshooting
   items:
     - id: latest-version
@@ -72,7 +89,7 @@
       title: CLI Authentication Issues
     - id: troubleshooting-isolating
       title: Isolating Components
-    - id: install-components
+    - id: troubleshooting-install-components
       title: Installing Components
     - id: clearing-bit-cache
       title: Clearing the Bit Cache
@@ -82,12 +99,8 @@
   items:
     - id: bitsrc-component-ci
       title: Component CI
-    - id: setup-authentication
-      title: Setup Authentication
     - id: my-account
       title: My account
-    - id: scopes-on-bitsrc
-      title: Scopes on bitsrc.io
     - id: bitsrc-plans
       title: Pricing
     - id: bitsrc-security
@@ -108,6 +121,8 @@
       title: deprecate
     - id: cli-diff
       title: diff
+    - id: cli-eject
+      title: eject
     - id: cli-export
       title: export
     - id: cli-import
@@ -146,3 +161,5 @@
       title: untag
     - id: cli-untrack
       title: untrack
+    - id: cli-watch
+      title: watch

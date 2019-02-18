@@ -69,7 +69,7 @@ IsolateOptions = {
   saveDependenciesAsComponents: ?boolean, // import the dependencies as bit components instead of as npm packages
   installPackages: ?boolean, // Install the package dependencies
   noPackageJson: ?boolean, // Don't write the package.json
-  override: ?boolean, // Override existing files in the folder
+  override: ?boolean, // Override existing files in the directory
   excludeRegistryPrefix: ?boolean, // exclude the registry prefix from the component's name in the package.json
   dist: ?boolean, // Write dist files
   conf: ?boolean, // Write bit.json file
@@ -84,7 +84,7 @@ This is useful in case you didn’t pass an `isolatedEnvDirPath` to `createIsola
 
 **Destroy()**
 
-Delete the isolated environment folder.
+Delete the isolated environment directory.
 
 #### Usage example
 

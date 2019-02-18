@@ -7,7 +7,8 @@ category: CLI Reference
 prev: cli-move.html
 next: cli-remove.html
 ---
-Displays, adds and removes remote Scopes.
+
+Displays, adds and removes remote Collections.
 
 ## Synopsis
 
@@ -17,7 +18,7 @@ bit remote [add <url>] | [rm <name>] [-g|--global]
 
 ## Examples
 
-### Display existing remote Scopes
+### Display existing remote Collections
 
 ```bash
 bit remote
@@ -25,7 +26,7 @@ bit remote
 
 ### Add a remote
 
-Add a remote to the local Scope.
+Add a remote to the local workspace.
 
 ```bash
 bit remote add <url>
@@ -37,10 +38,10 @@ Or add a remote globally
 bit remote add <url> --global
 ```
 
-Remote name will be the remote Scope name.
+Remote name will be the remote Collection name.
 
-## Remove a remote (from local Scope/global config).
+## Remove a remote (from local workspace/global config).
 
 ```bash
-bit remote rm <Scope-name>
+bit remote rm <collection-name>
 ```

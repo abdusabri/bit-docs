@@ -7,17 +7,18 @@ category: CLI Reference
 prev: cli-export.html
 next: cli-install.html
 ---
-Imports a component to your project from a remote Scope.
+
+Imports a component to your project from a remote Collection.
 
 ## Synopsis
 
 ```bash
-bit import|i [-t|--tester] [-v|--verbose] [-c|--compiler] [-e|--environment] [--extension] [-p|--path <directory>] [-d|--display-dependencies] [-O|--override] [--dist] [--conf] [--ignore-package-json] [ids...]
+bit import|i [-t|--tester]  [-c|--compiler] [-x|--extension] [-e|--environment]  [-p|--path <directory>] [-o|--objects] [-d|--display-dependencies] [-O|--override] [-v|--verbose] [--dist] [--conf] [--ignore-package-json] [--skip-npm-install] [-m|--merge] [ids...]
 ```
 
 ## Examples
 
-### Import a single component from a remote Scope
+### Import a single component from a remote Collection
 
 When importing a component, it will be imported to the default location listed in the [bit.json file](/docs/conf-bit-json.html).
 Component is imported without its [environments](/docs/ext-concepts.html#extensions-vs-environments) by default.
@@ -44,7 +45,7 @@ In order to import a component's specific version, use the `@` sign:
 bit import username.foo/bar@1.0.4
 ```
 
-### Import project's component objects from their remote Scope
+### Import project's component objects from their remote Collection
 
 The [bit.json file](/docs/conf-bit-json.html) contains a list of the project's sourced components. In order to import all of their updated objects (similar to running `git fetch`) at once.
 
@@ -160,12 +161,12 @@ Write the configuration file (bit.json).
 bit import username.foo/bar --conf
 ```
 
-**--no-package-json**
+**--ignore-package-json**
 
 Do not generate package.json for the imported component(s).
 
 ```bash
-bit import username.foo/bar --no-package-json
+bit import username.foo/bar --ignore-package-json
 ```
 
 **--extension**

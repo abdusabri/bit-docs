@@ -7,6 +7,7 @@ category: CLI Reference
 prev: cli-checkout.html
 next: cli-config.html
 ---
+
 Clears bit's cache from current working machine
 
 ## Synopsis

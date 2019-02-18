@@ -1,51 +1,31 @@
 ---
 id: setup-authentication
-title: Setup Bitsrc Authentication
+title: Setup Bitsrc.io Authentication
 permalink: docs/setup-authentication.html
 layout: docs
-prev: bitsrc-component-ci.html
-next: my-account.html
+category: Getting Started
+prev: installation.html
+next: initializing-bit.html
 ---
 
-[Bit](https://github.com/teambit/bit) is open source and distributed, Scopes can be set up on any machine.
+Before working with [bitsrc.io](https://bitsrc.io), configure your Bit client with your Bit account.
 
-You are welcome to host your Scopes and components on [bitsrc.io](https://bitsrc.io), the free community hub for Bit.
-[bitsrc.io](https://bitsrc.io) provides many features, including Scope permissions, component search engine, auto-parsed docs and examples, test results and live rendering for React components.
-
-Before working with [bitsrc.io](https://bitsrc.io) you will first need to configure your Bit client and SSH connectivity.
-
-## Configure your local Bit client
-
-To set your username and email in Bit, use the [bit config command](/docs/cli-config.html).
-
-> **Using Git config**
->
-> If you already have a configuration for `user.name` and `user.email` in your `git config`, Bit will automatically use the predefined properties in Git.
-
-```bash
-$ bit config set user.name "mickey mouse"
-$ bit config set user.email mickey@example.com
-```
-
-## Set up bitsrc.io connectivity
-
-### Signup to bitsrc.io
+## Signup to bitsrc.io
 
 [Create a free account](https://bitsrc.io/signup) on [bitsrc.io](https://bitsrc.io).
 
 ## Connect Bit CLI to your Bit account
 
-Bit uses SSH to authenticate a computer with your account, so Bit can authentication with the Scopes hosted on [bitsrc.io](https://bitsrc.io).
-
-SSH access to servers is already set up in most cases – and if it isn’t, it’s easy to do. SSH is also an authenticated network protocol; and because it’s ubiquitous, it’s generally easy to set up and use.
-This makes SSH the preferred method for collaboration.
-
 There are two methods to authenticate a local Bit client to your [bitsrc.io](https://bitsrc.io) account.
 
-- [bit login](/docs/cli-login.html) command - This generates an authentication token for your [bitsrc.io](https://bitsrc.io) account, configures it to the local Bit client and uses that token to initiate an SSH connection.
-- SSH key-pair - Generate an SSH key pair, upload the public part to your [bitsrc.io](https://bitsrc.io) account, and configure your Bit client to use the private part.
+> **Bit communication protocol**
+>
+> Bit uses **SSH** as its network protocol, as in most cases it is already set up, and if not, it's easy to do so. SSH is also an authenticated network protocol; and because it’s ubiquitous, it’s generally easy to set up and use.
+> This makes SSH the preferred method for collaboration.
 
-### Authenticating Bit using 'bit login'
+### Authenticate Bit using 'bit login'
+
+Use [bit login](/docs/cli-login.html) to generate an authentication token for a [bitsrc.io]. Bit uses the token to configure the local Bit configuration.
 
 To authenticate your Bit client, run the following command:
 
@@ -54,21 +34,16 @@ $ bit login
 Your browser has been opened to visit: http://bitsrc.io/bit-login?redirect_uri=http://localhost:8085...
 ```
 
-Your browser will automatically open a login page. Enter your [bitsrc.io](https://bitsrc.io) account credentials. The authentication token will be generated and configured to [bit config](/docs/cli-config.html).
+The browser opens to a login page. Enter your [bitsrc.io](https://bitsrc.io) account credentials. The authentication token is generated and configured to [bit config](/docs/cli-config.html).
 
-> **Logging out from Bit**
->
-> To quickly logout from Bit, run the [bit logout](/docs/cli-logout.html) command.
+#### Manage authenticated devices
 
-#### Managing your authentication devices
+To see a list of all logged-in devices, go to [profile settings](https://bitsrc.io/settings).  
+You can remove tokens, forcing Bit clients to re-authenticate themselves with your account.
 
-If you used [bit login](/docs/cli-login.html) to authenticate a Bit client with a [Bit](https://bitsrc.io) account, you can see a list of all logged in devices in the [profile settings](https://bitsrc.io/settings).
+### Authenticate Bit using SSH key-pair
 
-Here you can remove tokens, thus forcing Bit clients to re-authenticate themselves with your account.
-
-### Authenticating Bit using SSH key-pair
-
-If you know how to generate your SSH key, you can skip the next part and move directly to [authenticate your SSH Key to bitsrc.io](#upload-public-ssh-key-to-bitsrcio).
+If you know how to generate your SSH key, you can skip the next part and move to [authenticate your SSH Key to bitsrc.io](#upload-public-ssh-key-to-bitsrcio).
 
 #### Generate SSH key for macOS/Linux
 
@@ -92,37 +67,31 @@ To generate an SSH key, please follow these steps:
 
 1. Download and start the [puttygen.exe generator](https://winscp.net/eng/docs/ui_puttygen).
 2. In the "Parameters" section choose **SSH2 DSA** and press **Generate**.
-3. Move your mouse on the small screen in order to generate the key pairs.
-4. Enter a key comment, which will identify the key (useful when you use several SSH keys).
+3. Move your mouse on the small screen to generate the key pairs.
+4. Enter a key comment, which identifies the key (useful when you use several SSH keys).
 5. Click "Save private key" to save your private key.
 6. Click "Save public key" to save your public key.
 
 #### Upload public SSH key to bitsrc.io
 
-1. First, you should log in to your [bitsrc.io](https://bitsrc.io/login) account.
-2. Click on your user icon to open your user actions menu:
+1. Log in to your [bitsrc.io](https://bitsrc.io/login) account.
+2. Click on the user icon to open the user actions menu.
+3. Click on the ‘Settings’ link to reach the user settings section. Once inside, click on ‘SSH Keys’ in the left pane.
+4. In the ‘SSH Keys’ section, click on ‘new SSH key’.
+5. Type a name for the key. The key name documents the key, and will not affect the behavior of the system.
+6. `Key` - Copy the content of the file `id_rds.pub`.
+7. Click on ‘Add SSH key’.
 
-<img src="https://storage.googleapis.com/bit-docs/SSH%20connect%201.png" width="212" height="220" margin=20 />
+A new item is added to the SSH key list. This means that you are now connected via SSH and can export and import components from the [bitsrc.io](https://bitsrc.io) community hub.
 
-3. Click on the ‘Settings’ link to reach your user settings section. Once inside, click on ‘SSH Keys’ in the left pane:
+## Configure your local Bit client
 
-<img src="https://storage.googleapis.com/bit-docs/ssh%20key%202.png" width="483" height="271" margin=20 />
+To set your username and email in Bit, use the [bit config command](/docs/cli-config.html).
 
-4. In the ‘SSH Keys’ section, you will notice that there are no SSH keys associated with your account. Click on ‘new SSH key’:
+* If you've used `bit login` to authenticate, the username and email is set according to the Bit account.
+* If no configuration values are defined for Bit, it falls back to read the values from `git config`.
 
-<img src="https://storage.googleapis.com/bit-docs/ssh%20key%203.png" width="525" height="142" margin=20 />
-
-5. In the ‘new SSH key’ form, type in a name for the key. 
-The key name documents the key, and will not affect the behavior of the system.
-
-<img src="https://storage.googleapis.com/bit-docs/ssh%20key%204.png" width="483" height="337" margin=20 />
-
-6. To Fill the ‘Key’ form, go back to where you created your SSH key pair on your machine, and copy the content of the file named id_rds.pub. 
-Paste it in the form. 
-
-7. Click on ‘Add SSH key’ to submit. 
-You will now see a new item in the SSH key list:
-
-<img src="https://storage.googleapis.com/bit-docs/ssh%20key%205.png" width="585" height="301" margin=20 />
-
-You are now connected via SSH and can export and import components from the [bitsrc.io](https://bitsrc.io) community hub.
+```bash
+$ bit config set user.name "mickey mouse"
+$ bit config set user.email mickey@example.com
+```

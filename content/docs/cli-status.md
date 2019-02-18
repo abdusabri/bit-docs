@@ -12,10 +12,14 @@ Displays the status of all the components currently under work.
 Meaning - displays new, modified and staged components.
 Does not display components that have already been exported, and components that have been imported but not modified.
 
+> **Note**
+>
+> You can find a full description of all possible component statuses [here](/docs/workspace-statuses.html)
+
 ## Synopsis
 
 ```bash
-bit status|s
+bit status|s [-j, --json]
 ```
 
 ## Examples
@@ -37,9 +41,3 @@ no modified components
 staged components
      > moon/sun... ok
 ```
-
-### Component status definitions
-
-* **New** - a newly-created component, before first tagging.
-* **Modified** - a component that has been modified and isn't new (previously staged/exported/imported).
-* **Staged** - a component that had been tagged has remained unmodified. Not yet exported.

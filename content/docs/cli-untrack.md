@@ -5,6 +5,7 @@ permalink: docs/cli-untrack.html
 layout: docs
 category: CLI Reference
 prev: cli-untag.html
+next: cli-watch.html
 ---
 
 Untracks a new (not yet tagged) component.
@@ -12,7 +13,7 @@ Untracks a new (not yet tagged) component.
 ## Synopsis
 
 ```bash
-bit untrack|u [ids...]
+bit untrack|u [-a|--all] [ids...]
 ```
 
 ## Example

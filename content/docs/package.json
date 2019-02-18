@@ -1,10 +1,11 @@
 {
-  "name": "@bit/bit.docs.content.docs",
-  "version": "0.0.26",
-  "homepage": "https://bitsrc.io/bit/docs/content/docs",
-  "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {},
-  "peerDependencies": {},
-  "license": "SEE LICENSE IN LICENSE"
+    "name": "@bit/bit.docs.content.docs",
+    "version": "1.0.0",
+    "homepage": "https://bitsrc.io/bit/docs/content/docs",
+    "main": "index.js",
+    "dependencies": {},
+    "devDependencies": {},
+    "peerDependencies": {},
+    "componentRootFolder": "content/docs",
+    "license": "SEE LICENSE IN LICENSE"
 }

@@ -12,7 +12,7 @@ Using [extensions](/docs/ext-concepts.html) is fairly straightforward. Let's lea
 
 ## Importing an extension
 
-In order to use an extension, just [import](/docs/cli-import.html#import-an-extension) it from [bitsrc.io](https://bitsrc.io/) or another remote Scope:
+In order to use an extension, just [import](/docs/cli-import.html#import-an-extension) it from [bitsrc.io](https://bitsrc.io/) or another remote Collection:
 
 ```bash
 bit import bit.extensions/commands/pack --extension
@@ -103,6 +103,3 @@ bit.loadExtension(extensionName, extensionFilePath, extensionConfig)
     console.log(err);
   });
 ```
-
-## Developing extensions
-Want to develop your own extensions? head over [here](/docs/ext-developing-extensions.html) to learn how.

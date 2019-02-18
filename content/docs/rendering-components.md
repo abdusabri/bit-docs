@@ -3,12 +3,12 @@ id: rendering-components
 title: Rendering Components
 permalink: docs/rendering-components.html
 layout: docs
-category: Getting Started
-prev: testing-components.html
-next: removing-components.html
+category: Docs & Playground
+prev: documenting-components.html
+next: organizing-components.html
 ---
 
-Rendering allows other users to interact with your Scoped component(s), directly at [bitsrc.io](https://bitsrc.io).  
+Rendering allows other users to interact with your component(s), directly at [bitsrc.io](https://bitsrc.io).  
 See an example of a rendered component [here](https://bitsrc.io/bit/movie-app/components/hero).
 
 ## How Does it Work?
@@ -16,7 +16,7 @@ See an example of a rendered component [here](https://bitsrc.io/bit/movie-app/co
 - Add annotations to your component, documenting how it should be rendered.
 - Bundle your component as a [UMD](https://github.com/umdjs/umd) using bundler. You can use one of Bit’s existing bundlers, see [Building Components](docs/building-components.html).
 - [Tag](/docs/cli-tag.html) & [Export](/docs/cli-export.html) your component.
-- Preview your component in your bitsrc.io [Scope](docs/scopes-on-bitsrc.html).
+- Preview your component in your bitsrc.io [Collection](docs/organizing-components.html).
 
 ### Annotations
 
@@ -62,7 +62,7 @@ To render your component, bundle it as a [UMD](https://github.com/umdjs/umd).
 
 #### Bundling components
 
-To bundle your component, use a bundler webpack which is a type of a [compiler](/docs/ext-compiling.html). You can use one of Bit bundlers avilable at the [Bit envs Scope](https://bitsrc.io/bit/envs/).  
+To bundle your component, use a bundler webpack which is a type of a [compiler](/docs/ext-compiling.html). You can use one of Bit bundlers avilable at the [Bit envs Collection](https://bitsrc.io/bit/envs/).  
 Note that the React bundler comes in 2 configurations:  
 
 - [with](https://bitsrc.io/bit/envs/bundlers/webpack) css modules.
@@ -143,7 +143,7 @@ export const Secondary = () => <div>secondary mon</div>;
 ## Injecting Dependencies
 
 Bitsrc.io aspires to provide the component all the dependncies needed for preview.
-Errors will be displayed at the preview frame. Most errors occur because there was a problem in the bundle itself.
+Errors will be displayed at the preview frame. Mosr errors occur because there was a problem in the bundle itself.
 
 ## Troubleshooting
 

@@ -3,16 +3,19 @@ id: quick-start
 title: Quick Start
 permalink: docs/quick-start.html
 layout: docs
-category: Getting Started
-next: installing-bit.html
+category: Home
+next: what-is-bit.html
 ---
-Learn the basics of working with Bit in your own projects.
 
-To start, choose an existing repository containing components or modules you’d like to share in other projects. We’ll learn how to use Bit to make these components available to use and even develop from other repositories.
+Learn the basics of working with Bit to share your components and collaborate with your team.
 
-You can also use one of our [example projects](/docs/quick-start.html#example-projects), but we recommend starting with your own code.
+In this tutorial, we'll go though the basics of how to use Bit in order to make components reusable. When done, you will have a component collection to use in all your projects, and share with your team or the community.
 
-When done, you will have a collection of the components and modules shared from the project ready to share with your team.
+To begin, choose an existing repository containing components you’d like to share and reuse.  
+
+You can also use one of our [example projects](/docs/example-projects.html), but we recommend starting with your own code.
+
+Let’s get started.
 
 ### Install bit
 
@@ -20,11 +23,11 @@ When done, you will have a collection of the components and modules shared from 
 npm install bit-bin -g
 ```
 
-See additional [installation methods](/docs/installing-bit.html).
+See more [installation methods](/docs/installation.html).
 
 ### Init Bit for your project
 
-[Initialize a Bit workspace](/docs/initializing-bit.html) in your project’s directory.
+[Initialize a Bit workspace](/docs/initializing-bit.html) in the project’s directory.
 
 ```bash
 $ cd project-directory
@@ -33,18 +36,19 @@ $ bit init
 
 ### Track components with Bit
 
-Bit [isolates and tracks](/docs/isolating-and-tracking-components.html) files or sets of files in your repository as components, to later make them available in other projects.
-To track components use the `bit add` command. In this example, we’ll use a glob pattern to track all the components in the relevant directory.
+Bit can [track components](/docs/add-and-isolate-components.html) in your repository, and isolates them so that they can be used in other projects.  
+
+To track components, we’ll use the `bit add` command. In this example, we’ll use a glob pattern to track all the components in the `src/components` directory. 
 
 ```bash
 bit add src/components/* # use a glob pattern or a specific path to track multiple components or a single component.
 ```
 
-Bit automatically scans the files it tracks for their dependencies (packages and files), to resolve their dependency graph and isolate the components.
+Bit automatically scans the files in the given path. It identifies your components, and resolves their dependencies (packages and files) so that it can isolate them and make them reusable. 
 
 > **Tip**
 >
-> Use the [bit status](/docs/cli-status.html) command to verify that each component's dependency graph was successfully built and resolved.
+> Use [bit status](/docs/cli-status.html) to verify that each component's dependency graph has been successfully resolved. This command provides useful information during any step of the process.  
 
 #### Example
 
@@ -75,26 +79,50 @@ $ tree
 5 directories, 13 files
 ```
 
-To track these files as components we can use the [bit add](/docs/cli-add.html) with a glob pattern.
+To track these files as components we can use [bit add](/docs/cli-add.html) with a glob pattern.
 
 ```bash
 $ bit add src/components/*
 tracking 3 new components
 ```
 
-### Add build and test tasks
+### Build and test components
 
-To eliminate the overhead of configuring build and test environments for every component, Bit lets you choose and add build and test tasks which will apply to all the components you share.  
+Instead of having to add compiler and tester configurations for every component, Bit lets you predefine build and test environments which apply to all the components you share from a repository. 
 
-Read more about adding a [build environment](/docs/building-components.html) and a [test environment](/docs/testing-components.html) to your project.  
+You can use Bit’s [pre-made compilers and testers](https://bitsrc.io/bit/envs), or create your own. Learn more about [building](/docs/building-components.html) and [testing](/docs/testing-components.html) components.
 
-Here is a list of [pre-made build and test environments](https://bitsrc.io/bit/envs) for you to get started with quickly.  
+#### Adding a compiler
 
-You can [specify the component's test files](/docs/isolating-and-tracking-components.html#tracking-a-component-with-testspec-files) with the `bit add` command and  `--test` flag, to let Bit know these are test files and should be a part of the component.
+To apply the compiler for the components in your repository, import the environment into your project using Bit (before tagging the components’ version). For example, here is how you can import the [Babel compiling environment](https://bitsrc.io/bit/envs/compilers/babel).
 
-### Version components
+```
+$ bit import bit.envs/compilers/babel --compiler
+the following component environments were installed
+- bit.envs/compilers/babel@0.0.7
+```
 
-[Setting a version for tracked components](/docs/versioning-tracked-components.html) locks the state of the components’ files and dependency graph, and sets a semantic version to the components- thus making each component-version immutable. When tagging a component, all of its build and test tasks will run, and only if all is working correctly, Bit will version the components.
+#### Adding a tester
+
+Bit lets you track your components’ test files alongside your components. This enables Bit to run these tests for every component, and present the results in your CLI or in [Bit’s component hub](https://bitsrc.io). 
+
+You can [specify the component's test files](/docs/add-and-isolate-components.html#track-a-component-with-testspec-files) using the `bit add` and  `--test` flag, to let Bit know which test files should be a part of the component.
+
+To import a testing environment which will be applied to these tests, import the environment to your project just like you’d import the compiler. For example, here is how you can import the [Mocha testing environment](https://bitsrc.io/bit/envs/testers/mocha).
+
+```
+$ bit import bit.envs/testers/mocha --tester
+the following component environments were installed
+- bit.envs/testers/mocha@0.0.7
+```
+
+Note that while you don’t have to add a tester to test your components, it is recommended to add a compiler to build your components.
+
+### Versioning (Tagging) components
+
+To lock a version for your components (and lock their dependency tree), we’ll use the `bit tag` command. It will set a semantic version for the components, making them version-immutable.  
+
+You can tag all the components in your repository using the `--all` flag. Here is an example.
 
 ```bash
 $ bit tag --all 1.0.0
@@ -102,19 +130,23 @@ $ bit tag --all 1.0.0
 added components:  components/button@1.0.0, components/login@1.0.0, components/logo@1.0.0
 ```
 
-### Export versioned components
+Note that when you tag your components, Bit will first run their build/test tasks to see that everything is working correctly, and only then tag the components.
 
-#### Create a Scope
+### Share components to a remote collection
 
-In order to export your components, you need to create a Scope in which they will be hosted and made available. To create a Scope, create a free account in [bitsrc.io](https://bitsrc.io/signup), and create a Scope.  
+Now that our components are tracked and versioned, we can share them to a collection- making them organized, discoverable and reusable across our projects.
 
-A [Scope](/docs/scopes-on-bitsrc.html) is similar to a git repository, that can host and manage components.  
+#### Create a Collection
 
-You can learn about [managing components in Scopes](/docs/organizing-components-in-scopes.html) and check out [this example Scope](https://bitsrc.io/bit/movie-app) we created for [React components].
+Let’s create a collection to [host and share](/docs/organizing-components.html) our components. Head over to [Bit’s community hub](https://bitsrc.io), create a [free account](https://bitsrc.io/signup), and create a collection.
 
-#### Authenticate Bit CLI
+A [Collection](/docs/remote-collection.html) hosts and manages components. While it can be set up on any server, we recommend choosing Bit’s component hub, which provides better component discoverability and collaboration for your team.
 
-In order for the local Bit client to interact with resources you created in your [bitsrc.io](https://bitsrc.io) account, you need to authenticate the client.  
+Here is an [example collection](https://bitsrc.io/bit/movie-app) we've created with React UI components. Check it out.
+
+#### Authenticate Bit CLI to bitsrc.io
+
+Authenticate Bit CLI so it can interact with collections on [bitsrc.io](https://bitsrc.io).
 
 Use `bit login` to open a login page in the browser. Enter your username and password and return to Bit-CLI to continue.
 
@@ -125,46 +157,46 @@ Your browser has been opened to visit: http://bitsrc.io/bit-login?redirect_uri=h
 
 #### Export components
 
-Unlike publishing packages, [exporting](/docs/cli-export.html) a component will *not* change the project's source code or force you to set up any additional repositories.  
+Now we are ready to [export the components](/docs/cli-export.html) in our project to the collection we created. Unlike publishing packages to package managers, this will not require any overhead or further setup.
 
-Instead, you can use the `bit export` command to share components from you project’s existing structure to [bitsrc.io](https://bitsrc.io).
+Use the `bit export` command to share components from your project to [bitsrc.io](https://bitsrc.io). 
 
 ```bash
-$ bit export username.scopename  # Share components to your Scope
-exported 3 components to scope username.scopename
+$ bit export user-name.collection-name  # Share components to a remote Collection
+exported 3 components to collection user-name.collection-name
 ```
+
+That’s it. Your components should now be available in your collection. Head over there to take a look and invite your team.
 
 ### Use components in other projects
 
 #### Install with NPM / Yarn
 
-All components shared with Bit can be installed with the NPM / Yarn client or with any package manager that implements the [CommonJS package registry specification](http://wiki.commonjs.org/wiki/Packages/Registry).
+All components shared with Bit can be [installed using NPM or Yarn](/docs/installing-components.html). This means every component can be used by any developer with access to it, whether they are using Bit or not.
 
-You can now install the components you just exported in other project [using NPM / Yarn](/docs/installing-components-with-package-managers.html). This workflow makes every component and module available to install for every developer, using Bit or not.
+#### Import components into a new project for parallel development
 
-#### Import and develop components
+Apart from installing components using package managers, Bit lets you [import components](/docs/sourcing-components.html) into other projects.
 
-Using the `bit import` command you can [import components](/docs/importing-components.html) and modules shared with Bit into any repository, and continue to develop them.  
+When importing a component, Bit will source the component’s source code in that repository. Then, the component can be developed right from that repository.
 
-The sourced and modified component can then be exported back to [bitsrc.io](https://bitsrc.io) as a new version of component, or as a new component.
+To import components use the `bit import` command.
 
-This workflow makes it easier to maintain and modify components, to build software faster.
+Each sourced and modified component can then be exported back to [bitsrc.io](https://bitsrc.io) as either a new version, or an entirely new component. Changes can be updated and synced across multiple repositories.
+
+This makes it easier to maintain and modify components, and build software faster as a team.  
 
 #### Update and sync changes
 
-Changes to components made in different projects can be [updated](https://docs.bitsrc.io/docs/updating-sourced-components.html) and synced, and even [merged](https://docs.bitsrc.io/docs/merge-changes.html) between different repositories. This workflow helps your team collaborate and work together.
-
-## Example Projects
-
-Want more examples?
-
-We've created a few example projects that will help you learn how to use bit (don't forget to take a look at each project's `readme` file on [GitHub](github.com)).  
-
-* A [React movie-app](https://github.com/teambit/movie-app) with UI components, and a [matching Scope collection](https://bitsrc.io/bit/movie-app) of components shared from this App with Bit.
-* [Ramda with Bit](https://github.com/teambit/ramda), and a [matching collection](https://bitsrc.io/bit/ramda) of individual components from the library.
+Changes to components made in different projects can be [updated](/docs/updating-sourced-components.html) and synced, and even [merged](/docs/merge-changes.html) between different repositories.
 
 ## Summary
 
-You now know the basics of Bit, and can start putting it to use for sharing code between your projects and with your team.
+Great! You’ve now learned the basics of Bit and can start putting it to use.  
 
-Feel free to learn more through the different sections of the docs, search the [Bit website](https://bitsrc.io) for components or visit [Bit on GitHub](https://github.com/teambit/bit).
+You should now also have a collection of reusable components you and your team can use in your projects and apps. Can you think of more components to share?
+
+Feel free to learn more through the different sections of the docs, visit [Bit on GitHub](https://github.com/teambit/bit), [discover components](https://bitsrc.io) shared by the community around in the world and invite your friends to collaborate.
+
+For any questions don’t hesitate to [reach out](https://bitsrc.io/support) or chat with the team on [Gitter](https://gitter.im/bit-src/Bit). Happy coding!
+

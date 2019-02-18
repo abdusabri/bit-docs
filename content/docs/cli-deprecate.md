@@ -7,6 +7,7 @@ category: CLI Reference
 prev: cli-config.html
 next: cli-diff.html
 ---
+
 Marks a local/remote component as deprecated
 
 ## Synopsis
@@ -26,15 +27,15 @@ bit deprecate foo/bar
 ### Mark a remote component as deprecated
 
 ```bash
-bit deprecate full.scope-name/foo/bar --remote
+bit deprecate full.collection-name/foo/bar --remote
 ```
 
 ## Options
 
 **-r, --remote**
 
-Deprecate a component from a remote Scope.
+Deprecate a component from a remote Collection.
 
 ```bash
-bit deprecate full.scope-name/foo/bar --remote
+bit deprecate full.collection-name/foo/bar --remote
 ```

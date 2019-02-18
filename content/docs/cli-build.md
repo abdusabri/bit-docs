@@ -7,6 +7,7 @@ category: CLI Reference
 prev: cli-add.html
 next: cli-checkout.html
 ---
+
 Builds a component (or all the project's components) with the configured compiler (in [bit.json file](/docs/conf-bit-json.html)).
 
 ## Synopsis

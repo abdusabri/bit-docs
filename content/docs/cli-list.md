@@ -7,26 +7,27 @@ category: CLI Reference
 prev: cli-link.html
 next: cli-log.html
 ---
-Shows a list of all available components in a local or a remote Scope.
+
+Shows a list of all available components in a local workspace or a remote Collection.
 
 ## Synopsis
 
 ```bash
-bit list|ls [-ids|--ids <ids...>] [-b|--bare] [-o|--outdated] [-j|--json] [Scope]
+bit list|ls [-ids|--ids <ids...>] [-b|--bare] [-s|--scope] [-o|--outdated] [-j|--json] [Collection]
 ```
 
 ## Examples
 
-### List all components in local Scope
+### List all components in local workspace
 
 ```bash
 bit list
 ```
 
-### List all components in a remote Scope
+### List all components in a remote Collection
 
 ```bash
-bit list [Scope name]
+bit list [Collection name]
 ```
 
 ### Show the local and remote versions of all local components

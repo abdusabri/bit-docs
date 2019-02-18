@@ -8,7 +8,7 @@ prev: latest-version.html
 next: troubleshooting-isolating.html
 ---
 
-There are several things you can do if you encountered `fatal: permission to scope <scopename> was denied` error message.
+There are several things you can do if you encountered `fatal: permission to Collection <collectionname> was denied` error message.
 
 ## Bitsrc.io account issues
 
@@ -21,20 +21,20 @@ If you haven't signed up already, head over [here](https://bitsrc.io/signup).
 
 ### Wrong username/password combination
 
-In case you are not using [SSH key for authentication](docs/setup-authentication.html), Bit will ask for your username/password combination for your [bitsrc.io](https://bitsrc.io) account. Make sure you have provided with the correct combination of it.  
+In case you are not using [SSH key for authentication](/docs/setup-authentication.html), Bit will ask for your username/password combination for your [bitsrc.io](https://bitsrc.io) account. Make sure you have provided with the correct combination of it.  
 In case you have forgotten your password, head to your [setting page](https://bitsrc.io/settings/profile) to reset it.
 
-### No permission to the Scope
+### No permission to the Collection
 
-It may be that you do not have permissions to access the scope in question Scope.
+It may be that you do not have permissions to access the Collection in question.
 
-- If the Scope is public, you can import component from it, but you have to have write permissions to export to it.
-- If the Scope is private, you must have read/write permission in order to import/export components to it.
+- If the Collection is public, you can import component from it, but you have to have write permissions to export to it.
+- If the Collection is private, you must have read/write permission in order to import/export components to it.
 
 ## SSH keys issues
 
-Bit uses SSH as the communication protocol between Bit and [bitsrc.io](https://bitsrc.io). In order to make this process works smoothly, you require to either configure Bit to use a specific SSH key, [as seen here](docs/setup-authentication.html).  
-There are several configuration issues that may occur if you hit any permission issues when working with SSH keys and remote Scopes.
+Bit uses SSH as the communication protocol between Bit and [bitsrc.io](https://bitsrc.io). In order to make this process works smoothly, you require to either configure Bit to use a specific SSH key, [as seen here](/docs/setup-authentication.html).  
+There are several configuration issues that may occur if you hit any permission issues when working with SSH keys and remote Collections.
 
 **If the SSH connection is not established due to issues with SSH keys, Bit will fail to authenticate.**
 

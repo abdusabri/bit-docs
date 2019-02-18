@@ -7,6 +7,7 @@ category: CLI Reference
 prev: cli-merge.html
 next: cli-remote.html
 ---
+
 Moves a file/directory that's part of a tracked component to a new location.
 This command will update the [.bitmap file](/docs/initializing-bit.html#bitmap) accordingly.
 

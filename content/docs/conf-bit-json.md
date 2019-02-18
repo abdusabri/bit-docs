@@ -4,8 +4,8 @@ title: bit.json
 permalink: docs/conf-bit-json.html
 layout: docs
 category: Configuring Bit
-next: conf-bit-on-the-server.html
-
+next: conf-config.html
+prev: bit-on-the-server.html
 ---
 
 The `bit.json` file is your workspace configuration file. This document specifies all the different configurations that are set in the file.
@@ -117,7 +117,7 @@ The `useWorkspaces` section determines whether to use [yarn workspaces](https://
 ```
 
 The `manageWorkspaces` section determines whether bit lists the component directories in the root `package.json`'s `workspaces` section.
-Bit will list there the `componentsDefaultDirectory`, `dependenciesDirectory`, and all [custom import paths](/docs/cli-import.html#import-a-single-component-from-a-remote-scope).
+Bit will list there the `componentsDefaultDirectory`, `dependenciesDirectory`, and all [custom import paths](/docs/cli-import.html#import-a-single-component-from-a-remote-collection).
 Additionally, bit will mark the root `package.json` as `private: true`.
 
 Relevant only when `packageManager` is `yarn`, and `useWorkspaces` is `true`.
@@ -156,5 +156,5 @@ The extension's configuration and options are listed for each extension.
 
 The `resolveModules` section configures custom module resolution for Bit components. This is similar to Webpack's `resolve`, and contains 2 objects:
 
-* `moduleDirectories` - Add additional paths to resolve components from.
+* `moduleDirectories: array` - Add additional paths to resolve components from.
 * `aliases` - Sets an alias for a directory.

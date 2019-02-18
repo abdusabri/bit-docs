@@ -1,10 +1,11 @@
 {
-  "name": "@bit/bit.docs.content.tutorial",
-  "version": "0.0.11",
-  "homepage": "https://bitsrc.io/bit/docs/content/tutorial",
-  "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {},
-  "peerDependencies": {},
-  "license": "SEE LICENSE IN LICENSE"
+    "name": "@bit/bit.docs.content.tutorial",
+    "version": "1.0.0",
+    "homepage": "https://bitsrc.io/bit/docs/content/tutorial",
+    "main": "index.js",
+    "dependencies": {},
+    "devDependencies": {},
+    "peerDependencies": {},
+    "componentRootFolder": "content/tutorial",
+    "license": "SEE LICENSE IN LICENSE"
 }

@@ -43,7 +43,7 @@ As we've gained experience in developing compilers for bit components, we've not
 
 ## Dependencies
 
-When a compiler is imported to a [local Scope](/docs/what-is-bit.html#what-is-a-scope-collection), its [dependencies](/docs/how-dependency-management.html) are installed as well.
+When a compiler is imported to the workspace, its [dependencies](/docs/how-dependency-management.html) are installed as well.
 You should make sure bit recognizes the compiler's dependencies, so it will later install them properly. A `require`/`import` statement is enough for bit, but there are two edge-cases where you should add `require` statements:
 
 * Invoking a dependency with `require.resolve` won't help bit recognize it. That's one case in which you should add another require statement. This usually happens with [babel plugins and presets](https://babeljs.io/docs/plugins/). [Here's a good example](https://bitsrc.io/bit/envs/compilers/babel/code#compilers/babel/index.js).
@@ -51,7 +51,7 @@ You should make sure bit recognizes the compiler's dependencies, so it will late
 
 ## So you've written a compiler. What's next?
 
-First, as with any component, [track](/docs/cli-add.html), [tag](/docs/cli-tag.html) and [export](/docs/cli-export.html) the component. Then, [import the new environment](/docs/cli-import.html#import-a-new-environment) to your [local Scope](/docs/what-is-bit.html#what-is-a-scope-collection).
+First, [track](/docs/cli-add.html), [tag](/docs/cli-tag.html) and [export](/docs/cli-export.html) the component. Then, [import the new environment](/docs/cli-import.html#import-a-new-environment) to your workspace.
 
 ## Debugging your compiler
 
@@ -70,4 +70,4 @@ These lines load all the component files (here we have just two files as an exam
 
 ## Learn straight from the source
 
-The best examples for compilers can be found in [bit's environments Scope](https://bitsrc.io/bit/envs/). Take a look and learn from us.
+The best examples for compilers can be found in [bit's environments Collection](https://bitsrc.io/bit/envs/). Take a look and learn from us.

@@ -5,6 +5,7 @@ permalink: docs/logs.html
 layout: docs
 category: Troubleshooting
 prev: clearing-bit-cache.html
+next: bitsrc-component-ci.html
 ---
 
 Some errors and additional information are document in Bit's log files but not displayed in the console output. If you're having problems, it's worth checking the log files.

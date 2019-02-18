@@ -3,23 +3,25 @@ id: testing-components
 title: Testing Components
 permalink: docs/testing-components.html
 layout: docs
-category: Getting Started
+category: Building and Testing
 prev: building-components.html
-next: rendering-components.html
+next: tag-component-version.html
 ---
 
-Bit can run the component's tests in an [isolated component environment](/docs/ext-concepts.html#what-is-an-isolated-component-environment).
+Bit can run tests for components with a test task defined.
 
-The testing process of bit components is done in an [isolated component environment](/docs/ext-concepts.html#what-is-an-isolated-component-environment), using [testers](/docs/ext-testing.html), which are environments - a special kind of [extension](/docs/ext-concepts.html#extensions-vs-environments).
+## Basics of testing Components
 
-## Executing components tests
+A component can contain test files. Bit executes them using test runners. Bit tests components using a unique component called Testers. A Tester is a component that takes another component's test files and executes them using other test runners.
 
-In order to test a component, you need to have a tester defined.
+### Where are the tests being executed?
 
-### Defining a tester for your project
+Bit tests components in an [isolated component environment](/docs/ext-concepts.html#what-is-an-isolated-component-environment). Bit does it to ensure true isolation of components. If a test process works, Bit can reproduce it anywhere.
 
-A tester is defined per [Scope](/docs/what-is-bit.html#what-is-a-scope-collection), and once defined, testing a component within that Scope will test the component using the defined tester.
-In order to do that, just [import the tester](/docs/cli-import.html#import-a-new-environment):
+## Defining a Tester
+
+Every component can have a tester. Bit uses a global tester configuration for a workspace. Bit propagate the global configuration to each component tracks in that workspace.  
+Configured a global tester with the `--tester` flag when importing a compiler component.
 
 ```bash
 $ bit import bit.envs/testers/mocha --tester
@@ -27,22 +29,19 @@ the following component environments were installed
 - bit.envs/testers/mocha@0.0.7
 ```
 
-You can now go take a look at the `env` configuration in your [bit.json](/docs/conf-bit-json.html#env--object) and see your tester over there.
+## Adding test/spec files to your components
 
-#### Curated list of test environments on Bitsrc.io
+We mark component's test files by using the `--tests` option for `bit add`:
 
-You can find a list of **Test environments** maintained by the [bitsrc.io](https://bitsrc.io) team [here](https://bitsrc.io/bit/envs).
+```bash
+bit add src/foo.js --tests test/foo-test.js
+```
 
-- [Mocha](https://bitsrc.io/bit/envs/testers/mocha).
-- [Jest](https://bitsrc.io/bit/envs/testers/jest).
+For more details about marking files as test files, see [here](/docs/cli-add.html#tracking-a-component-with-a-test-file).
 
-### Adding test/spec files to your components
+## Testing a component
 
-Bit is not going to guess which files are your spec files, right? You should [track your spec files correctly](/docs/cli-add.html#tracking-a-component-with-a-test-file).
-
-### Test your component
-
-Once you have a defined tester, you can [test your component](/docs/cli-test.html):
+Use [bit test](/docs/cli-test.html) to test components that have a tester and test files:
 
 ```bash
 $ bit test foo/bar
@@ -56,22 +55,11 @@ total duration - 4ms
 
 > **Note**
 >
-> If you have a [compiler](/docs/building-components.html) defined, testing a component will also cause Bit to [build](/docs/cli-build.html) it first.
+> If a component has a [compiler](/docs/building-components.html), Bit will trigger it prior to running its tests.
 
-## Executing component tests remotely
+## Testers maintained by bitsrc.io
 
-When staging or exporting components, Bit runs the components' extensions in an [isolated component environment](/docs/ext-concepts.html#what-is-an-isolated-component-environment). So the `test` process for the component will run outside the context of the project. This allows Bit to make sure the component is truly isolated.
+Find a list of Testers maintained by the [bitsrc.io](https://bitsrc.io) [here](https://bitsrc.io/bit/envs).
 
-### Self-managed Scope
-
-After exporting a component to a [self-managed remote Scope](/docs/organizing-components-in-scopes.html#self-managed-scope), the component will be [built](/docs/building-components.html) and then tested in the remote Scope in an [isolated component environment](/docs/ext-concepts.html#what-is-an-isolated-component-environment).
-
-### bitsrc.io-managed Scope
-
-After exporting a component to a [bitsrc.io managed Scope](/docs/organizing-components-in-scopes.html#creating-a-scope-on-bitsrcio), [bitsrc.io](https://bitsrc.io) will create an isolated container, where the component will be [built](/docs/building-components.html) and then tested in the remote Scope in an [isolated component environment](/docs/ext-concepts.html#what-is-an-isolated-component-environment).
-When the tests have finished running, their results will be displayed as part of the component's documentation on [bitsrc.io](https://bitsrc.io).
-As the Scope [owner or collaborator](/docs/scopes-on-bitsrc.html#Scope-permissions), you can enter the component page on bitsrc.io, and view the CI results in the `Console Output` tab.
-
-## Implementing a tester
-
-You can implement your own custom tester. [See here](/docs/ext-testing.html) for more details.
+- [Mocha](https://bitsrc.io/bit/envs/testers/mocha).
+- [Jest](https://bitsrc.io/bit/envs/testers/jest).

@@ -7,12 +7,13 @@ category: CLI Reference
 prev: cli-status.html
 next: cli-test.html
 ---
+
 Locks the version of a 'new' or 'modified' component(s). Component's status will then be 'staged'.
 
 ## Synopsis
 
 ```bash
-bit tag|t [id] [version] [-m|--message <message>] [-a|--all] [-b|--scope <scope-name>] [-p|--patch] [-mi|--minor] [-ma|--major] [-f|--force] [-v|--verbose] [-i|--ignore-missing-dependencies] [--skip-tests]
+bit tag|t [id] [version] [-m|--message <message>] [-a|--all] [-s|--scope <collection-name>] [-p|--patch] [-mi|--minor] [-ma|--major] [-f|--force] [-v|--verbose] [-i|--ignore-unresolved-dependencies] [--skip-tests]
 ```
 
 ## Examples
@@ -98,7 +99,7 @@ missing packages dependencies: some-package
 In order to tag the component even though it has missing dependencies, use the `ignore missing dependencies` flag:
 
 ```bash
-bit tag foo/bar --ignore-missing-dependencies
+bit tag foo/bar --ignore-unresolved-dependencies
 ```
 
 ## Options
@@ -119,9 +120,9 @@ Tag all new and modified components
 bit tag -all
 ```
 
-**-b, --scope <scope-name>**
+**-b, --scope <collection-name>**
 
-Tag all components of the specified Scope.
+Tag all components of the specified Collection.
 
 ```bash
 bit tag --scope foo
@@ -172,7 +173,7 @@ bit tag foo/bar --verbose
 Ignore missing package and file dependencies.
 
 ```bash
-bit tag foo/bar --ignore-missing-dependencies
+bit tag foo/bar --ignore-unresolved-dependencies
 ```
 
 **--skip-tests**

@@ -5,7 +5,9 @@ permalink: docs/cli-add.html
 layout: docs
 category: CLI Reference
 next: cli-build.html
+prev: cli-all.html
 ---
+
 Tracks any set of files as a single or multiple components.
 
 ## Synopsis
@@ -25,7 +27,7 @@ bit add src/foo/bar.js
 ```
 
 This creates a single component with one file, which is also defined as the main file.
-By default, the directory becomes the namespace, and the file name becomes the component name, so the new component's id will be `foo/bar`.
+By default, the file name becomes the component name, so the new component's id will be `bar`.
 
 ### Tracking a directory as a single component
 
@@ -36,7 +38,7 @@ bit add src/foo/
 ```
 
 This creates a single component that contains all the files in the directory.
-The component namespace becomes the parent directory, and the component name becomes the child directory, so the new component's id will be `src/foo`.
+The component name becomes the child directory, so the new component's id will be `foo`.
 
 > **Note**
 >
@@ -53,7 +55,7 @@ When tracking a component with multiple files, you can specify a custom main fil
 bit add src/foo/ --main bar.js
 ```
 
-This will create a component with the id `src/foo`, with `bar.js` as the main file (even when there's an `index` file in the same directory).
+This will create a component with the id `foo`, with `bar.js` as the main file (even when there's an `index` file in the same directory).
 
 ### Tracking multiple components using a file list
 
@@ -63,17 +65,17 @@ You can start tracking multiple components at once using a file list - Just ment
 bit add src/foo/bar.js src/utils/connect.js
 ```
 
-This will create two components: `foo/bar` and `utils/connect`.
+This will create two components: `bar` and `connect`.
 
 ### Tracking a file list as a single component
 
 You can track files from different places under the same component, by specifying a file list, and the `--id` flag, which specifies a component id.
 
 ```bash
-bit add src/one/foo.js src/two/bar.js --id my/name --main src/one/foo.js
+bit add src/one/foo.js src/two/bar.js --id name --main src/one/foo.js
 ```
 
-This will create a single component with the id `my/name` and the files `bar.js` and `foo.js` (which will be defined as the main file).
+This will create a single component with the id `name` and the files `bar.js` and `foo.js` (which will be defined as the main file).
 
 > **Note**
 >
@@ -84,10 +86,18 @@ This will create a single component with the id `my/name` and the files `bar.js`
 You can just override bit's default naming behavior by specifying the `--id` flag.
 
 ```bash
-bit add src/foo/bar.js --id what/ever
+bit add src/foo/bar.js --id whatever
 ```
 
-This will create a component with the id `what/ever`, instead of `foo/bar`.
+This will create a component with the id `whatever`, instead of `bar`.
+
+You can also specify a namespace.
+
+```bash
+bit add src/foo/bar.js --id yeah/whatever
+```
+
+This will create a component with the id `yeah/whatever`, which is composed of the namespace `yeah` and the name `whatever`. Any number of namespaces can be nested inside the id.
 
 ### Tracking an additional file for an existing component
 
@@ -100,9 +110,9 @@ bit add src/foo/new.js --id foo/bar
 
 By specifying the existing component id, you've ensured the file will be tracked as part of the already-existing `foo/bar` component, which now contains all the three files together.
 
-### Tracking components from different places with the same namespace
+### Tracking multiple components with the same namespace
 
-You can track multiple components at once with the same namespace, even when they're not under the same directory - just use the `--namespace` flag.
+You can track multiple components at once with the same namespace - just use the `--namespace` flag.
 
 ```bit
 bit add src/foo/bar.js src/second/hi.js --namespace jaja
@@ -118,7 +128,7 @@ You can use [glob pattern](https://en.wikipedia.org/wiki/Glob_(programming)) to 
 bit add src/foo/*
 ```
 
-This will create as many components as there are files inside the directory, all with `foo` as their namespace. For example, if `foo` directory contains two files - `bar.js` and `second.js`, two components will be created: `foo/bar` and `foo/second`.
+This will create as many components as there are files inside the directory, all with `foo` as their namespace. For example, if `foo` directory contains two files - `bar.js` and `second.js`, two components will be created: `bar` and `second`.
 
 > **Note**
 >
@@ -144,7 +154,7 @@ For example, let's say this is our file structure:
     └───single.js
 ```
 
-The components created will be: `src/single`, `src/one`, `src/two`.
+The components created will be: `single`, `one`, `two`.
 
 > **Note**
 >
@@ -176,7 +186,7 @@ Fortunately enough, you can use our [DSL](https://en.wikipedia.org/wiki/Domain-s
 bit add src/**/ --main '{PARENT}.js'
 ```
 
-This will look for a main file with the same name as the parent directory. The components created will be: `src/one` (with `one.js` as the main file) and `src/two` (with `two.js` as the main file).
+This will look for a main file with the same name as the parent directory. The components created will be: `one` (with `one.js` as the main file) and `two` (with `two.js` as the main file).
 
 ### Tracking a component for each file in each sub-directory
 
@@ -199,7 +209,7 @@ For example, let's say this is our file structure:
     └───fourth.js
 ```
 
-The components created will be: `one/first`, `one/second`, `two/third`, `src/fourth`.
+The components created will be: `first`, `second`, `third`, `fourth`.
 
 ### Tracking a component with a test file
 
@@ -209,7 +219,7 @@ You can specify which files are the test files, so bit can later test the compon
 bit add src/foo/bar.js --tests 'src/foo/bar.spec.js'
 ```
 
-This will create a component with the id `foo/bar`, with two files: `bar.js` as the main file, and `bar.spec.js` as the test file.
+This will create a component with the id `bar`, with two files: `bar.js` as the main file, and `bar.spec.js` as the test file.
 
 Now, let's say this is our file structure:
 
@@ -223,7 +233,7 @@ Now, let's say this is our file structure:
             └───bar.spec.js
 ```
 
-You can specify a whole folder of test files.
+You can specify a whole directory of test files.
 
 ```bash
 bit add src/foo --tests 'src/foo/tests/*'
@@ -231,7 +241,7 @@ bit add src/foo --tests 'src/foo/tests/*'
 
 ### Tracking components for each sub-directory, and tests from a separate directory tree
 
-Now this is a common one: your code is under `src` folder, and your tests are under `tests` folder:
+Now this is a common one: your code is under `src` directory, and your tests are under `tests` directory:
 
 ```bash
 └───src
@@ -256,11 +266,11 @@ Fortunately enough, you can use our [DSL](https://en.wikipedia.org/wiki/Domain-s
 bit add src/**/* --tests 'tests/{PARENT}/{FILE_NAME}.spec.js'
 ```
 
-This will create four components: `utils/left-pad`, `utils/curry`, `components/nav-bar`, `components/button`. Each component will have one main file and one test file - the corresponding one from the tests folder.
+This will create four components: `left-pad`, `curry`, `nav-bar`, `button`. Each component will have one main file and one test file - the corresponding one from the tests directory.
 
 ### Tracking a component with just the right files
 
-When you track a component as a whole folder, or when you track multiple components as a subset of folders, you might discover you have some excessive files in there. We want our components to be lean, and contain exactly what we need, and nothing more.
+When you track a component as a whole directory, or when you track multiple components as a subset of directories, you might discover you have some excessive files in there. We want our components to be lean, and contain exactly what we need, and nothing more.
 In order to do that, just use the `--exclude` flag, and exclude whatever you (don't) want:
 
 You can exclude a single file.
@@ -269,7 +279,7 @@ You can exclude a single file.
 bit add src/foo --exclude dont-want.js
 ```
 
-You can exclude a whole folder.
+You can exclude a whole directory.
 
 ```bash
 bit add src/** --exclude src/utils
@@ -289,21 +299,24 @@ bit add src/foo --exclude 'dont-want.js,thumb.jpg'
 
 ## Options
 
-**-i, --id <name>**
+**-i, --id** <name>
 
-Component id - *namespace/name*.
-Whenever you specify this flag, bit will try to track a single component with the specified id. If not specified, the name will be as follows:
+Component id - *\[namespaces/\]name*.
+Whenever you specify this flag, bit will try to track a single component with the specified id. 
+The id can contain either just a name, or any number of namespaces nested by `/`, and finally the id, separated by a `/` as well. For example: `namespace1/namespace2/some-name`.
 
-- When adding a file: *parent_dir/file_name*
-- When adding a directory: *parent_dir/dir_name*
+If not specified, the id will be as follows:
+
+- When adding a file: *file_name*
+- When adding a directory: *dir_name*
 
 ```bash
-bit add src/foo/bar.js --id moon/sun
+bit add src/foo/bar.js --id moon/sun/earth
 ```
 
-Will create a component: `moon/sun`.
+Will create a component: `moon/sun/earth`.
 
-**-m, --main <file>**
+**-m, --main** <file>
 
 Main implementation/index file name.
 If not specified, bit will look for an `index` file.
@@ -318,7 +331,7 @@ You can also use our [DSL](https://en.wikipedia.org/wiki/Domain-specific_languag
 bit add src/**/ --main 'src/{PARENT}/{PARENT}.js'
 ```
 
-**-t, --tests <file...>**
+**-t, --tests** <file...>
 
 Specify a test file, test files directory, or tests path using our [DSL](https://en.wikipedia.org/wiki/Domain-specific_language), which supports `PARENT` and `FILE_NAME`.
 
@@ -346,9 +359,10 @@ Track a component with test files from a parallel directory tree
 bit add src/foo/bar.js --tests "test/{PARENT}/{FILE_NAME}.spec.js"
 ```
 
-**-n, --namespace <namespace>**
+**-n, --namespace** <namespace>
 
-Component(s) namespace. Used mainly when adding multiple components of the same namespace.
+Component(s) namespace(s). Used mainly when adding multiple components of the same namespace(s).
+You can specify one namespace or multiple ones, separated by a `/` (e.g `namespace1/namespace2`).
 
 ```bash
 bit add src/foo/bar.js src/second/other.js --namespace moon
@@ -356,7 +370,7 @@ bit add src/foo/bar.js src/second/other.js --namespace moon
 
 Will create two components: `moon/bar`, `moon/other`.
 
-**-e, --exclude <file...>**
+**-e, --exclude** <file...>
 
 Exclude files, directories and patterns.
 
@@ -366,7 +380,7 @@ You can exclude a single file.
 bit add src/foo --exclude dont-want.js
 ```
 
-You can exclude a whole folder.
+You can exclude a whole directory.
 
 ```bash
 bit add src/** --exclude src/utils
@@ -384,7 +398,7 @@ You can exclude using a comma-separated-list.
 bit add src/foo --exclude 'dont-want.js,thumb.jpg'
 ```
 
-**-o, --override <boolean>**
+**-o, --override** <boolean>
 
 override existing component if exists (default = false)
 

@@ -5,6 +5,7 @@ permalink: docs/ext-testing.html
 layout: docs
 category: Extending Bit
 prev: ext-compiling.html
+next: component-dependencies.html
 ---
 
 Bit uses testers, which are environments - a special kind of [extension](/docs/ext-concepts.html#extensions-vs-environments), in order to [test components](/docs/testing-components.html). Since there are so many testing tools and configurations, some of you might discover that the existing testers don't fit their requirements. Testers are bit components in their own right, and anyone can develop a new tester. In this section, we'll learn how.
@@ -126,7 +127,7 @@ As we've gained experience in developing testers for bit components, we've notic
 
 ## Dependencies
 
-When a tester is imported to a [Scope](/docs/scopes-on-bitsrc.html#scopes), its [dependencies](/docs/how-dependency-management.html) are installed as well.
+When a tester is imported to a workspace, its [dependencies](/docs/how-dependency-management.html) are installed as well.
 You should make sure bit recognizes the tester's dependencies, so it will later install them properly. A `require`/`import` statement is enough for bit, but there are two edge-cases where you should add `require` statements:
 
 * Invoking a dependency with `require.resolve` won't help bit recognize it. That's one case in which you should add another require statement. This usually happens with plugins (for example, [karma plugins](http://karma-runner.github.io/1.0/config/plugins.html). [Here's a good example](https://bitsrc.io/bit/envs/testers/karma-mocha-react/code#testers/karma-mocha-react/karma.conf.js).
@@ -134,7 +135,7 @@ You should make sure bit recognizes the tester's dependencies, so it will later 
 
 ## So you've written a tester. What's next?
 
-First, as with any component, [track](/docs/cli-add.html), [tag](/docs/cli-tag.html) and [export](/docs/cli-export.html) the component. Then, [import the new environment](/docs/cli-import.html#import-a-new-environment) to your [local Scope](/docs/what-is-bit.html#what-is-a-scope-collection).
+First, as with any component, [track](/docs/cli-add.html), [tag](/docs/cli-tag.html) and [export](/docs/cli-export.html) the component. Then, [import the new environment](/docs/cli-import.html#import-a-new-environment) to your workspace.
 
 ## Debugging your compiler
 
@@ -149,4 +150,4 @@ This line invokes the `run` function with a spec file path of your choice. Now y
 
 ## Learn straight from the source
 
-The best examples for testers can be found in [bit's environments Scope](https://bitsrc.io/bit/envs/). Take a look and learn from us.
+The best examples for testers can be found in [bit's environments Collection](https://bitsrc.io/bit/envs/). Take a look and learn from us.

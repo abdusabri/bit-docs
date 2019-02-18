@@ -4,33 +4,28 @@ title: Documenting Components
 permalink: docs/documenting-components.html
 layout: docs
 category: Getting Started
-prev: removing-components.html 
+prev: tag-component-version.html
+next: organizing-components.html
 ---
 
-Documentation is the first step in increasing code discoverability and reusability by allowing developers to understand how to use a component within their code.
+It’s essential to document components so that they can be discoverable. Documented components are also more comfortable to use and understand.
 
-## Different types of component documentation
+Bit supports several methods of documenting components.
 
-Bit supports several methods of documenting components, each with its own reasoning and functionality.  
-You can use any of the methods of documentation, none of them, or a combination.
+## Document a component using a Markdown file
 
-## Documenting a component using a Markdown file
+We can include a [Markdown](https://en.wikipedia.org/wiki/Markdown) file as part of the component. When exported, Bit renders the markdown file contents as documentation for the component.
+Using the bit add command we can append a file to a tracked component.
 
-The simplest method of documentation is to attach an external file to the component which holds its documentation.  
-Bit natively supports [Markdown](https://en.wikipedia.org/wiki/Markdown) format for such task.
+```bash
+$ bit add docs/login.md --id ui/login
+```
 
-When you are tracking files for a component, you can add any Markdown file to it.  
-When exported to [bitsrc.io](https://bitsrc.io/), the component's overview tab will render that Markdown file found within the component.
+The Markdown file can have any name, not only `README.md`.
 
-> **Note**
->
-> The Markdown file you are using can have any name, not just README.md.  
-This is useful for when for you have several Markdown files within the same directory, and each file refers to a different component.
+## Document a component with JSDocs
 
-## Documenting a component with JSDocs
-
-[JSDocs](http://usejsdoc.org) is a standard format for documenting APIs in JavaScript.  
-If you use JSDocs to document APIs in your components, Bit will read and parse them to preset them in the component overview tab on [bitsrc.io](https://bitsrc.io/).
+[JSDocs](http://usejsdoc.org) is a standard format for documenting APIs in JavaScript. Bit parses JSDocs and uses it as the component's documentation.
 
 Here is an example for the usage of JSDocs in a component with the [rendered result](https://bitsrc.io/bit/utils/array/diff).
 
@@ -53,11 +48,9 @@ export default function diff(firstArray: any[], secondArray: any[]): any[] {
 };
 ```
 
-## Documenting a component with Markdown in a code comment
+## Document a component with Markdown in a code comment
 
-Another method of documenting components is to simply use a JSDocs comment block to write the docs.  
-When exporting the component, Bit will use the text it finds there and present it in the component's overview tab.
-You can also use Markdown annotations to add additional features to the documentation (such as examples).
+Another method of documenting components is to use a JSDocs comment block to write the docs. It's possible to use markdown format in the documentation block.
 
 ```js
 /** @flow */

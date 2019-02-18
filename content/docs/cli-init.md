@@ -7,7 +7,8 @@ category: CLI Reference
 prev: cli-install.html
 next: cli-link.html
 ---
-Initializes an empty Bit Scope. This will create a `bit.json` file, and a `.bit` folder, which will contain Bit's objects & models.
+
+Initializes Bit on a local workspace. This will create a `bit.json` file, and a `.bit` directory, which will contain Bit's objects & models.
 
 ## Synopsis
 
@@ -19,7 +20,7 @@ bit init [-b|--bare] [-s|--shared <group-name>] [-t|--standalone] [--reset] [--r
 
 **-b, --bare [name]**
 
-Initializes an empty bit bare Scope.
+Initializes an empty bit bare Collection.
 
 ```bash
 bit init --bare
@@ -43,7 +44,7 @@ bit init --standalone
 
 **--reset**
 
-Resets a local scope to its initial state. Use this in case you have any corrupted data.
+Resets Bit to its initial state. Use this in case you have any corrupted data.
 
 ```bash
 bit init --reset

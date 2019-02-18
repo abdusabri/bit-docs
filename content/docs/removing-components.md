@@ -1,73 +1,46 @@
 ---
 id: removing-components
-title: Removing Components
+title: Remove & Deprecate Components
 permalink: docs/removing-components.html
 layout: docs
-category: Getting Started
-prev: rendering-components.html
-next: documenting-components.html
+category: Organizing Components
+prev: organizing-components.html
+next: installing-components.html
 ---
 
-There are many cases when its necessary to remove a component. You can remove components either from a local Scope or a remote Scope.
+Refactoring code often causes components to become obsolete or irrelevant. This is where removing and deprecating components becomes useful and necessary.
 
-> **Tip**
->
-> This section explains how to remove components and handle the unique use cases in different component states using [bit remove](/docs/cli-remove.html) command. To learn more about this command, head over to the [remove section in our CLI reference](/docs/cli-remove.html).
+Each collection has an internal cache for its dependencies. But this does not mean that removing components is not dangerous. Due to the fact, that package managers don't always use cache. It may break builds that rely on deleted content. Deprecating a component means that Bit marks it as obsolete. Deprecated components are still available to consumers.
 
-## Removing a component from a remote Scope
+## Remove a component from a remote Collection
 
-In order to remove a component from a [remote Scope](/docs/organizing-components-in-scopes), just specify the [full component id](/docs/isolating-and-tracking-components.html#automatic-component-id-resolution).
+To remove a component from a remote Collection, specify the full component ID.
 
 ```bash
-$ bit remove username.your-scope/foo/bar
+$ bit remove username.your-collection/foo/bar
 successfully removed components:
-username.your-scope/foo/bar
+username.your-collection/foo/bar
 ```
 
-### Handling dependencies
+### Effects of deleting components
 
-Sometimes other components depend on the removed component.
-Let's say username `tom` has two remote Scopes - `utils` and `components`.
+To better understand how Bit handles deleted components, let's follow this example:
 
-#### Removing component with dependencies in the same Scope
+* The `left-pad` in the `utils` collection.
+* A component `trim-right` depends on `left-pad` and is also in `utils` collection.
+* A component `login` also depends on `left-pad` but is in another collection - `onboarding`.
 
-For example, `utils` contains component `trim-right`, which depends on component `left-pad`. Both belong to namespace `string`.
-Once we'll try removing `left-pad`, Bit will prevent us from doing that, because `trim-right` depends on `left-pad`:
+This is what happens if we remove `left-pad`:
 
-```bash
-$ bit remove tom.utils/string/left-pad
-error: unable to delete tom.utils/string/left-pad, because the following components depend on it:
-tom.utils/string/trim-right
-```
+* Bit notifies that `trim-right` depends on `left-pad`. If we want to remove it, Bit asks to use the --force flag. This is because collections don't cache their components.
+* The `trim-right` component has a missing dependency `left-pad`. A refactor for `trim-right` is critical for it to work.
+* `login` that also depends on `left-pad` is not affected by the removal of `left-pad`. This is because collections keep a cache of external dependencies.
+* It is still possible to source `login` to another consumer project, as the cache works for Bit.
+* Installing `login` using npm fails because npm tries to install `left-pad` from its original collection.
 
-If you wish to ignore it and remove anyway, just use the `--force` flag:
+## Remove a component from a workspace
 
-```bash
-$ bit remove tom.utils/string/left-pad --force
-successfully removed components:
-tom.utils/string/left-pad
-```
-
-#### Removing component with dependencies in other remote Scopes
-
-The Scope `utils` contains component `string/left-pad`, and the Scope `components` contains component `onboarding/login`, which depends on `left-pad`.
-Once we'll try removing `left-pad`, we'll see that the component is removed without further ado:
-
-```bash
-$ bit remove tom.utils/string/left-pad
-successfully removed components:
-tom.utils/string/left-pad
-```
-
-What's the difference? When the dependent component is in a different Scope, removal will go as planned - That's because a cached version of the removed component will remain on the other Scope, and the dependent component will continue functioning as usual.
-
-> **Note**
->
-> You have to be an [owner or a collaborator](/docs/scopes-on-bitsrc.html#permission-types) on the [remote Scope](/docs/organizing-components-in-scopes.html#create-a-remote-scope) in order to be able to remove components from it.
-
-## Removing a component from a local Scope
-
-In order to remove a component from your [local Scope](/docs/what-is-bit.html#what-is-a-scope-collection), just specify the [local component id](/docs/isolating-and-tracking-components.html#automatic-component-id-resolution) (meaning - just namespace and name).
+Removing a local component has no ripple effects. This is only relevant to the consuming project. To do so  specify the component ID to remove.
 
 ```bash
 $ bit remove foo/bar
@@ -75,77 +48,30 @@ successfully removed components:
 foo/bar
 ```
 
-### Handling dependencies
+Bit triggers a warning when trying to remove modified components. Use the `--force` flag to force it.
 
-What happens when other components in your local Scope depend on the removed components?
-Let's say we are trying to remove component `string/left-pad` from our local Scope...
+### Effects of deleting components from a workspace
 
-#### Removing a component with a dependent staged component**
+Other components in the workspace may depend on removed components. Meaning that removing these dependencies affects dependent components. There are several cases which may occur when deleting a local component:
 
-Let's say there's another staged component in our local Scope - `string/trim-right`, and it depends on `string/left-pad`. Use `bit remove` to delete it.
+* A *new* component that depends on a *removed component* is not affected. This is because Bit did not isolate the component.
+* A *staged* component that depends on a *removed component* causes Bit to stop the remove command. To force it, we use the `--force` flag.
+* An *exported component* that depends on a local *removed component* is not affected. This is because an exported component is isolated and immutable. So deleting a local dependency does not affect.
 
-```bash
-$ bit remove string/left-pad
-error: unable to delete string/left-pad, because the following components depend on it:
-string/trim-right
-```
+## Deprecate a component in a remote collection
 
-To bypass it, use the `--force` flag:
+To deprecate a component in a remote Collection, specify the full component ID and use the `--remote` option.
 
 ```bash
-$ bit remove string/left-pad --force
-successfully removed components:
-string/left-pad
+$ bit deprecate username.your-collection/foo/bar --remote
+deprecated components: username.your-collection/foo/bar
 ```
 
-#### Removing a component with a dependent component new and exported components
+## Deprecating a component in a workspace
 
-Now, let's say there's a new component (`number/round`) and an exported component (`number/sum`) in the local Scope - both depend on `string/left-pad`.
-Let's see what happens:
+To deprecate a component in a workspace, specify the component ID.
 
 ```bash
-$ bit remove string/left-pad
-successfully removed components:
-string/left-pad
+$ bit deprecate foo/bar
+deprecated components: foo/bar
 ```
-
-Removal went on as planned, and for two different reasons:
-
-* When a new component is dependent on the removed component, Bit just hasn't created the dependencies between the components yet, and has no way of preventing you from removing the component.
-* When an exported component is dependent on the removed component, there's already a cached version of the removed component, which will remain after it's removal, for the use of the dependent exported component.
-
-### Removing a staged component from a local Scope
-
-Removing a staged component will remove and untrack it (meaning - it will be removed from the [.bitmap file](/docs/initializing-bit.html#bitmap)). 
-If you want Bit to also delete the component files, use the `--delete-files` flag:
-
-```bash
-$ bit remove foo/bar --delete-files
-successfully removed components:
-foo/bar
-```
-
-If, on the other hand, you want to keep tracking it as a new component, use the `--track` flag:
-
-```bash
-$ bit remove foo/bar --track
-successfully removed components:
-foo/bar
-```
-
-> **Note**
->
-> If you've [tracked](/docs/isolating-and-tracking-components.html) and [tagged](/docs/versioning-tracked-components.html) two components, and one depends on the other, removing it will remove its dependency as well.
-
-### Removing a modified component from a local Scope
-
-When you try to remove a modified component from your local Scope, Bit will prevent from doing it, unless the `--force` flag is issued.
-
-```bash
-$ bit remove foo/bar
-error: unable to remove modified components: foo/bar. please use --force flag.
-```
-
-> **Note**
->
-> Removing a new component is basically just untracking it, so just use the [untrack command](/docs/cli-untrack.html) for that.

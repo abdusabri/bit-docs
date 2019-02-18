@@ -1,15 +1,14 @@
 ---
 id: installation
-title: Installation
+title: Installing Bit
 permalink: docs/installation.html
 layout: docs
 category: Getting Started
-next: initializing-bit.html
-prev: quick-start.html
-# prev: what-is-bit.html
+next: setup-authentication.html
+prev: getting-help.html
 ---
 
-Bit can be installed on Mac, Windows or Linux machines, and available through various installation methods.
+Bit can be installed on Mac, Windows or Linux machines, and is available through various installation methods.
 
 Once installed, verify the installation by running the following command:
 
@@ -23,6 +22,9 @@ Install Bit using [NPM](https://www.npmjs.com/package/bit-bin):
 
 ```bash
 npm install bit-bin --global
+
+# When installing Bit on windows, add the --no-optional fag:
+npm install bit-bin --global --no-optional
 ```
 
 ## Yarn

@@ -5,6 +5,7 @@ permalink: docs/latest-version.html
 layout: docs
 category: Troubleshooting
 next: authentication-issues.html
+prev: conf-config.html
 ---
 
 If you are experiencing issues when using an old version of Bit, please try installing the latest one.
@@ -13,9 +14,9 @@ If you are experiencing issues when using an old version of Bit, please try inst
 
 ```bash
 $ bit -V
-13.0.4
+14.0.0
 ```
 
 ## Update version
 
-Upgrade to Bit's latest version according to your [installation method](/docs/installing-bit.html).
+Upgrade to Bit's latest version according to your [installation method](/docs/installation.html).

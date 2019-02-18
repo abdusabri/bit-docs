@@ -7,12 +7,13 @@ category: CLI Reference
 prev: cli-remove.html
 next: cli-status.html
 ---
+
 Shows component overview.
 
 ## Synopsis
 
 ```bash
-bit show [-j|--json] [-v|--versions <version>] [-o|--outdated [-c|--compare]
+bit show [-j|--json] [-r|--remote] [-v|--versions <version>] [-o|--outdated] [-c|--compare]
 ```
 
 ## Examples
@@ -41,7 +42,7 @@ bit show foo/bar --versions 4.3.1
 
 **-o, --outdated**
 
-Shows the component's latest version from the remote Scope (if exists).
+Shows the component's latest version from the remote Collection (if exists).
 
 ```bash
 bit show foo/bar --outdated

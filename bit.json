@@ -1,10 +1,10 @@
 {
     "env": {},
     "dependencies": {
-        "bit.docs/content/tutorial": "0.0.11",
+        "bit.docs/content/tutorial": "1.0.0",
         "bit.docs/content/community": "0.0.3",
-        "bit.docs/content/docs": "0.0.26"
+        "bit.docs/content/docs": "1.0.0"
     },
-    "componentsDefaultDirectory": "{namespace}/{name}",
+    "componentsDefaultDirectory": "components/{name}",
     "packageManager": "npm"
 }

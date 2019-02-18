@@ -7,12 +7,13 @@ category: CLI Reference
 prev: cli-test.html
 next: cli-untrack.html
 ---
+
 Reverts tagging of a component(s) - Removes a staged version(s).
 
 ## Synopsis
 
 ```bash
-bit untag [id] [version] [-a|--all]
+bit untag [id] [version] [-a|--all] [-f|--force]
 ```
 
 ## Examples
@@ -40,11 +41,11 @@ Specify the `--all` option and a specific version.
 bit untag --all 0.0.4
 ```
 
-This will untag all the staged `0.0.4` versions for all the components in your local scope.
+This will untag all the staged `0.0.4` versions for all the components in the workspace.
 
 ### Untag the staged versions for all staged components
 
-Specify the `--all` option without any further arguments in order to untag all the staged versions for all the components in your local scope.
+Specify the `--all` option without any further arguments in order to untag all the staged versions for all the components in the workspace.
 
 ```bash
 bit untag --all
