@@ -199,4 +199,3 @@ You should now also have a collection of reusable components you and your team c
 Feel free to learn more through the different sections of the docs, visit [Bit on GitHub](https://github.com/teambit/bit), [discover components](https://bitsrc.io) shared by the community around in the world and invite your friends to collaborate.
 
 For any questions don’t hesitate to [reach out](https://bitsrc.io/support) or chat with the team on [Gitter](https://gitter.im/bit-src/Bit). Happy coding!
-
